@@ -90,16 +90,24 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
-vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set('v', '<M-Down>', ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set('n', '<M-Up>', ':m .-2<CR>==', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-Down>', ':m .+1<CR>==', { noremap = true, silent = true })
+vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv", { desc = 'Move Line up', noremap = true, silent = true })
+vim.keymap.set('v', '<M-Down>', ":m '>+1<CR>gv=gv", { desc = 'Move line down', noremap = true, silent = true })
+vim.keymap.set('n', '<M-Up>', ':m .-2<CR>==', { desc = 'Move line up', noremap = true, silent = true })
+vim.keymap.set('n', '<M-Down>', ':m .+1<CR>==', { desc = 'Move line down', noremap = true, silent = true })
 vim.keymap.set('n', '<S-Up>', 'v<Up>', { desc = 'Select line up', noremap = true, silent = true })
 vim.keymap.set('n', '<S-Down>', 'v<Down>', { desc = 'Select line down', noremap = true, silent = true })
 vim.keymap.set('v', '<S-Up>', '<Up>', { desc = 'Select line up', noremap = true, silent = true })
 vim.keymap.set('v', '<S-Down>', '<Down>', { desc = 'Select line down', noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-j>', ':cnext<CR>', { desc = 'Next quickfix item', noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':cprev<CR>', { desc = 'Previous quickfix item', noremap = true, silent = true })
+
+-- set { and } to move indentation level of selected text
+vim.keymap.set('v', '{', '<gv', { desc = 'Move selected text left', noremap = true, silent = true })
+vim.keymap.set('v', '}', '>gv', { desc = 'Move selected text right', noremap = true, silent = true })
+
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -447,6 +455,8 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
+
+      vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
       -- Slightly advanced example of overriding default behavior and theme
       vim.keymap.set('n', '<leader>/', function()

@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 --[[
-
 =====================================================================
 ==================== READ THIS BEFORE CONTINUING ====================
 =====================================================================
@@ -85,14 +83,11 @@ I hope you enjoy your Neovim journey,
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
 
-=======
->>>>>>> origin/main
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
-<<<<<<< HEAD
 
 vim.keymap.set('v', '<M-Up>', ":m '<-2<CR>gv=gv", { desc = 'Move Line up', noremap = true, silent = true })
 vim.keymap.set('v', '<M-Down>', ":m '>+1<CR>gv=gv", { desc = 'Move line down', noremap = true, silent = true })
@@ -112,15 +107,8 @@ vim.keymap.set('v', '}', '>gv', { desc = 'Move selected text right', noremap = t
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
-=======
+
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-
-vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
-vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
-
--- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
->>>>>>> origin/main
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -191,11 +179,6 @@ vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
 -- Diagnostic keymaps
-<<<<<<< HEAD
-=======
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
->>>>>>> origin/main
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -256,10 +239,7 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-<<<<<<< HEAD
 vim.opt.conceallevel = 1
-=======
->>>>>>> origin/main
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
@@ -275,7 +255,6 @@ require('lazy').setup({
 
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
-<<<<<<< HEAD
   { 'ThePrimeagen/Vim-Be-Good' },
   { 'nvim-treesitter/playground' },
   { 'ThePrimeagen/Harpoon' },
@@ -300,14 +279,7 @@ require('lazy').setup({
       },
     },
   },
-
-=======
-  { 'tpope/vim-fugitive' },
-  { 'ThePrimeagen/vim-be-good' },
   { 'nvim-lua/plenary.nvim' },
-  { 'ThePrimeagen/harpoon' },
-  { 'mbbill/undotree' },
->>>>>>> origin/main
   -- Here is a more advanced example where we pass configuration
   -- options to `gitsigns.nvim`. This is equivalent to the following Lua:
   --    require('gitsigns').setup({ ... })
@@ -344,7 +316,6 @@ require('lazy').setup({
   { -- Useful plugin to show you pending keybinds.
     'folke/which-key.nvim',
     event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-<<<<<<< HEAD
     opts = {
       -- delay between pressing a key and opening which-key (milliseconds)
       -- this setting is independent of vim.opt.timeoutlen
@@ -397,20 +368,6 @@ require('lazy').setup({
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
-=======
-    config = function() -- This is the function that runs, AFTER loading
-      require('which-key').setup()
-
-      -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-      }
-    end,
->>>>>>> origin/main
   },
 
   -- NOTE: Plugins can specify dependencies.
@@ -499,10 +456,6 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/main
       vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
       -- Slightly advanced example of overriding default behavior and theme
@@ -676,18 +629,11 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-<<<<<<< HEAD
         ts_ls = {},
-        --
         tailwindcss = {},
         prettier = {},
         pylsp = {},
         emmet_ls = {},
-=======
-        -- tsserver = {},
-        --
-
->>>>>>> origin/main
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -892,12 +838,9 @@ require('lazy').setup({
 
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
-<<<<<<< HEAD
-=======
       vim.cmd.hi 'Normal guibg=NONE'
       vim.cmd.hi 'NonText guibg=NONE'
       vim.cmd.hi 'SignColumn guibg=NONE'
->>>>>>> origin/main
     end,
   },
 
@@ -941,7 +884,6 @@ require('lazy').setup({
       --  Check out: https://github.com/echasnovski/mini.nvim
     end,
   },
-<<<<<<< HEAD
   -- tailwind-tools.lua
   {
     'luckasRanarison/tailwind-tools.nvim',
@@ -954,8 +896,6 @@ require('lazy').setup({
     },
     opts = {}, -- your configuration
   },
-=======
->>>>>>> origin/main
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',

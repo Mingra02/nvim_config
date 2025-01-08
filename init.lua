@@ -105,6 +105,32 @@ vim.keymap.set('n', '<C-k>', ':cprev<CR>', { desc = 'Previous quickfix item', no
 vim.keymap.set('v', '{', '<gv', { desc = 'Move selected text left', noremap = true, silent = true })
 vim.keymap.set('v', '}', '>gv', { desc = 'Move selected text right', noremap = true, silent = true })
 
+vim.keymap.set('n', '<leader>wq', '<cmd>noautocmd wq <CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-s>', '<cmd>noautocmd w <CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-S>', '<cmd>w <CR>', { noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-d>', '<C-d>zz', { desc = 'Scroll down half page', noremap = true, silent = true })
+vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page', noremap = true, silent = true })
+vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Move to next search result', noremap = true, silent = true })
+vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Move to previous search result', noremap = true, silent = true })
+
+vim.keymap.set('n', '<leader>bb', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close buffer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>ba', ':bufdo bd<CR>', { desc = 'Close all buffers', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>bn', ':enew<CR>', { desc = 'New buffer', noremap = true, silent = true })
+
+-- repeat buffers but with tabs
+vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tq', ':tabclose<CR>', { desc = 'Close tab', noremap = true, silent = true })
+vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>', { desc = 'Next tab', noremap = true, silent = true })
+vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>', { desc = 'Previous tab', noremap = true, silent = true })
+vim.opt.showtabline = 2
+
+vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
+vim.keymap.set('n', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>lw', ':set wrap!<CR>', { desc = 'Toggle line wrap', noremap = true, silent = true })
+
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
 
@@ -364,7 +390,8 @@ require('lazy').setup({
         { '<leader>r', group = '[R]ename' },
         { '<leader>s', group = '[S]earch' },
         { '<leader>w', group = '[W]orkspace' },
-        { '<leader>t', group = '[T]oggle' },
+        { '<leader>t', group = '[T]abs' },
+        { '<leader>b', group = '[B]uffers' },
         { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
       },
     },
@@ -939,6 +966,67 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.neo-tree',
+  {
+    'akinsho/bufferline.nvim',
+    dependencies = {
+      'moll/vim-bbye',
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('bufferline').setup {
+        options = {
+          mode = 'buffers', -- set to "tabs" to only show tabpages instead
+          themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
+          numbers = 'none', -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
+          close_command = 'Bdelete! %d', -- can be a string | function, see "Mouse actions"
+          buffer_close_icon = '✗',
+          close_icon = '✗',
+          path_components = 1, -- Show only the file name without the directory
+          modified_icon = '●',
+          left_trunc_marker = '',
+          right_trunc_marker = '',
+          max_name_length = 30,
+          max_prefix_length = 30, -- prefix used when a buffer is de-duplicated
+          tab_size = 21,
+          diagnostics = false,
+          diagnostics_update_in_insert = false,
+          color_icons = true,
+          show_buffer_icons = true,
+          show_buffer_close_icons = true,
+          show_close_icon = true,
+          persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
+          separator_style = { '│', '│' }, -- | "thick" | "thin" | { 'any', 'any' },
+          enforce_regular_tabs = true,
+          always_show_bufferline = true,
+          show_tab_indicators = false,
+          indicator = {
+            -- icon = '▎', -- this should be omitted if indicator style is not 'icon'
+            style = 'none', -- Options: 'icon', 'underline', 'none'
+          },
+          icon_pinned = '󰐃',
+          minimum_padding = 1,
+          maximum_padding = 5,
+          maximum_length = 15,
+          sort_by = 'insert_at_end',
+        },
+        highlights = {
+          separator = {
+            fg = '#434C5E',
+          },
+          buffer_selected = {
+            bold = true,
+            italic = false,
+          },
+          -- separator_selected = {},
+          -- tab_selected = {},
+          -- background = {},
+          -- indicator_selected = {},
+          -- fill = {},
+        },
+      }
+    end,
+  },
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

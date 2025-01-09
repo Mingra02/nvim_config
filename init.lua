@@ -127,8 +127,8 @@ vim.keymap.set('n', '<leader>tn', ':tabnext<CR>', { desc = 'Next tab', noremap =
 vim.keymap.set('n', '<leader>tp', ':tabprevious<CR>', { desc = 'Previous tab', noremap = true, silent = true })
 vim.opt.showtabline = 2
 
-vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
-vim.keymap.set('n', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
+--vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
+--vim.keymap.set('n', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>lw', ':set wrap!<CR>', { desc = 'Toggle line wrap', noremap = true, silent = true })
 
 vim.keymap.set('n', '<C-q>', 'bd<CR>', { desc = 'Close Buffer', noremap = true, silent = true })

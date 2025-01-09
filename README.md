@@ -325,7 +325,7 @@ Once you have installed a Nerd Font, you will need to configure the Windows Term
         {
             "font":
             {
-                "face": "MesloLGM Nerd Font"
+                "face": "Hack Nerd Font Mono"
             }
         }
     }

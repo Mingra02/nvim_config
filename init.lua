@@ -869,8 +869,8 @@ require('lazy').setup({
     -- change the command in the config to whatever the name of that colorscheme is.
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
     priority = 1000, -- Make sure to load this before all the other start plugins.
+    'folke/tokyonight.nvim',
     init = function()
       -- Load the colorscheme here.
       -- Like many other themes, this one has different styles, and you could load
@@ -878,10 +878,10 @@ require('lazy').setup({
       vim.cmd.colorscheme 'retrobox'
 
       -- You can configure highlights by doing something like:
-      vim.cmd.hi 'Comment gui=none'
-      vim.cmd.hi 'Normal guibg=NONE'
-      vim.cmd.hi 'NonText guibg=NONE'
-      vim.cmd.hi 'SignColumn guibg=NONE'
+      vim.cmd.hi 'Comment ctermbg=NONE guibg=NONE'
+      vim.cmd.hi 'Normal ctermbg=NONE guibg=NONE'
+      vim.cmd.hi 'NonText ctermbg=NONE guibg=NONE'
+      vim.cmd.hi 'SignColumn ctermbg=NONE guibg=NONE'
     end,
   },
 
@@ -981,6 +981,8 @@ require('lazy').setup({
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
   require 'kickstart.plugins.neo-tree',
+  require 'kickstart.plugins.lualine',
+  require 'kickstart.plugins.alpha',
   {
     'akinsho/bufferline.nvim',
     dependencies = {

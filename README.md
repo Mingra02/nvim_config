@@ -314,4 +314,19 @@ unzip win32yank-x64.zip -d /tmp/
 sudo mv /tmp/win32yank.exe /usr/local/bin/
 sudo chmod +x /usr/local/bin/win32yank.exe
 ```
+Oh My Post Font Set up:
 
+Once you have installed a Nerd Font, you will need to configure the Windows Terminal to use it. This can be easily done by modifying the Windows Terminal settings (default shortcut: CTRL + SHIFT + ,). In your settings.json file, add the font.face attribute under the defaults attribute in profiles:
+```
+{
+    "profiles":
+    {
+        "defaults":
+        {
+            "font":
+            {
+                "face": "MesloLGM Nerd Font"
+            }
+        }
+    }
+}```

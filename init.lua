@@ -114,8 +114,8 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = 'Scroll up half page', noremap 
 vim.keymap.set('n', 'n', 'nzzzv', { desc = 'Move to next search result', noremap = true, silent = true })
 vim.keymap.set('n', 'N', 'Nzzzv', { desc = 'Move to previous search result', noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>bb', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
-vim.keymap.set('n', '<leader>bp', ':bprevious<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader><Tab>', ':bnext<CR>', { desc = 'Next buffer', noremap = true, silent = true })
+vim.keymap.set('n', '<leader><S-Tab>', ':bprevious<CR>', { desc = 'Previous buffer', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bd', ':bd<CR>', { desc = 'Close buffer', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>ba', ':bufdo bd<CR>', { desc = 'Close all buffers', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>bn', ':enew<CR>', { desc = 'New buffer', noremap = true, silent = true })
@@ -123,13 +123,15 @@ vim.keymap.set('n', '<leader>bn', ':enew<CR>', { desc = 'New buffer', noremap = 
 -- repeat buffers but with tabs
 vim.keymap.set('n', '<leader>tn', ':tabnew<CR>', { desc = 'New tab', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>tq', ':tabclose<CR>', { desc = 'Close tab', noremap = true, silent = true })
-vim.keymap.set('n', '<leader><Tab>', ':tabnext<CR>', { desc = 'Next tab', noremap = true, silent = true })
-vim.keymap.set('n', '<leader><S-Tab>', ':tabprevious<CR>', { desc = 'Previous tab', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tn', ':tabnext<CR>', { desc = 'Next tab', noremap = true, silent = true })
+vim.keymap.set('n', '<leader>tp', ':tabprevious<CR>', { desc = 'Previous tab', noremap = true, silent = true })
 vim.opt.showtabline = 2
 
 vim.keymap.set('v', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
 vim.keymap.set('n', 'p', '"_dP', { desc = 'Paste without yanking', noremap = true, silent = true })
 vim.keymap.set('n', '<leader>lw', ':set wrap!<CR>', { desc = 'Toggle line wrap', noremap = true, silent = true })
+
+vim.keymap.set('n', '<C-q>', 'bd<CR>', { desc = 'Close Buffer', noremap = true, silent = true })
 
 -- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true

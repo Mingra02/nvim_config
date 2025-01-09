@@ -66,7 +66,7 @@ fork to your machine using one of the commands below, depending on your OS.
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone git@github.com:Mingra02/nvim_config.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
@@ -272,4 +272,46 @@ sudo apt install -t unstable neovim
 sudo dnf install -y gcc make git ripgrep fd-find neovim
 ```
 </details>
+
+
+Installing Oh-My-Posh
+
+- Download brew (you may need to set a ubuntu account), make sure to follow the steps after install
+
+```bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.bashrc
+
+brew install gcc
+``` 
+
+in wsl ```adduser mingra01```
+then ```usermod -aG sudo mingra01```
+and ```nvim /etc/wsl.conf```
+and change to
+```
+[user]
+default=mingra01
+```
+in powershell do ```ubuntu config --default-user mingra02```
+
+
+- Download [NerdFonts](https://www.nerdfonts.com/) (Hack is nice)
+- Download Oh-My-Posh ```brew install janedobbeleer/oh-my-posh/oh-my-posh```
+- Add this line to ~/.bashrc in wsl
+
+```bash
+eval "$(oh-my-posh init bashh --config ~/.config/nvim/river.omp.json)"
+```
+
+Copy Paste might be an issue, download [win32yank.exe](https://github.com/equalsraf/win32yank/releases/download/v0.0.4/win32yank-x64.zip)
+Put it in here /usr/local/bin (activate wsl from powershell to easily find in downloads)
+```
+unzip win32yank-x64.zip -d /tmp/
+sudo mv /tmp/win32yank.exe /usr/local/bin/
+sudo chmod +x /usr/local/bin/win32yank.exe
+```
 

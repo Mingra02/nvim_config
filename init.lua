@@ -45,6 +45,9 @@ vim.keymap.set('n', '<leader>lw', ':set wrap!<CR>', { desc = 'Toggle line wrap',
 
 vim.keymap.set('n', '<C-q>', 'bd<CR>', { desc = 'Close Buffer', noremap = true, silent = true })
 
+-- set <C-/> to comment/uncomment
+vim.keymap.set('n', '<C-/>', ':CommentToggle<CR>', { desc = 'Comment/Uncomment', noremap = true, silent = true })
+
 vim.g.have_nerd_font = true
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 

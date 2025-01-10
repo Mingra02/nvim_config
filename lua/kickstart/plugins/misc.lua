@@ -10,6 +10,17 @@ return {
   { 'github/copilot.vim' },
   { 'nvim-lua/plenary.nvim' },
   {
+    'numToStr/Comment.nvim',
+    opts = {
+      toggler = {
+        line = '<C-_>',
+      },
+      opleader = {
+        line = '<C-_>',
+      },
+    },
+  },
+  {
     'lewis6991/gitsigns.nvim',
     opts = {
       signs = {

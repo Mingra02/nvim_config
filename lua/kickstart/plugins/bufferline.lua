@@ -27,7 +27,7 @@ return {
         show_buffer_close_icons = true,
         show_close_icon = true,
         persist_buffer_sort = true, -- whether or not custom sorted buffers should persist
-        separator_style = { '│', '│' }, -- | "thick" | "thin" | { 'any', 'any' },
+        separator_style = 'slant', -- | "thick" | "thin" | { 'any', 'any' },
         enforce_regular_tabs = true,
         always_show_bufferline = true,
         show_tab_indicators = false,
@@ -43,17 +43,42 @@ return {
       },
       highlights = {
         separator = {
-          fg = '#434C5E',
+          fg = '#3E4451', -- Consistent separator color
+          bg = 'NONE', -- Transparent background for separators
+        },
+        offset_separator = {
+          fg = '#3E4451', -- Consistent offset separator color
+          bg = 'NONE', -- Transparent background for offset separators
+        },
+        tab_separator = {
+          fg = '#3E4451', -- Consistent tab separator color
+          bg = 'NONE', -- Transparent background for tab separators
+        },
+        fill = {
+          fg = '#5C6370', -- Subdued color for unselected tab text
+          bg = '#3E4451', -- Transparent background for the fill area
+        },
+        background = {
+          fg = '#5C6370', -- Subdued color for unselected tab text
+          bg = 'NONE', -- Transparent background for unselected tabs
         },
         buffer_selected = {
-          bold = true,
-          italic = false,
+          fg = '#FFFFFF', -- Bright text for the selected tab
+          bg = '#282C34', -- Solid background for the selected tab
+          bold = true, -- Bold text for emphasis
+          italic = false, -- No italics
         },
-        -- separator_selected = {},
-        -- tab_selected = {},
-        -- background = {},
-        -- indicator_selected = {},
-        -- fill = {},
+        separator_selected = {
+          fg = '#3E4451', -- Same separator color for consistency
+          bg = '#282C34', -- Matches selected tab's background
+        },
+        tab_selected = {
+          fg = '#FFFFFF', -- Bright text for the selected tab
+          bg = '#282C34', -- Solid background for the selected tab
+        },
+        close_button_selected = {
+          bg = '#282C34', -- Make the close button match the background
+        },
       },
     }
   end,

@@ -49,7 +49,7 @@ vim.keymap.set('n', '<C-q>', 'bd<CR>', { desc = 'Close Buffer', noremap = true, 
 vim.keymap.set('n', '<C-/>', ':CommentToggle<CR>', { desc = 'Comment/Uncomment', noremap = true, silent = true })
 
 vim.g.have_nerd_font = true
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = 'Toggle undo tree', noremap = true, silent = true })
 
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -90,6 +90,10 @@ vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
+
+-- Disable Bell noises
+vim.o.belloff = 'all'
+vim.o.visualbell = false
 
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
@@ -163,9 +167,9 @@ vim.opt.conceallevel = 1
 require('lazy').setup({
   -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
   --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-  -- require 'kickstart.plugins.lint',
+  require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.indent_line',
+  require 'kickstart.plugins.lint',
   require 'kickstart.plugins.theme',
   require 'kickstart.plugins.telescope',
   require 'kickstart.plugins.treesitter',
@@ -178,6 +182,7 @@ require('lazy').setup({
   require 'kickstart.plugins.autoformat',
   require 'kickstart.plugins.lsp',
   require 'kickstart.plugins.bufferline',
+  require 'kickstart.plugins.repl',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

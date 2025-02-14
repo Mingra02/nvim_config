@@ -10,6 +10,12 @@ return {
   { 'github/copilot.vim' },
   { 'nvim-lua/plenary.nvim' },
   {
+    'nvzone/typr',
+    dependencies = 'nvzone/volt',
+    opts = {},
+    cmd = { 'Typr', 'TyprStats' },
+  },
+  {
     'numToStr/Comment.nvim',
     opts = {
       toggler = {
@@ -20,18 +26,18 @@ return {
       },
     },
   },
-  {
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
+  -- {
+  --   'lewis6991/gitsigns.nvim',
+  --   opts = {
+  --     signs = {
+  --       add = { text = '+' },
+  --       change = { text = '~' },
+  --       delete = { text = '_' },
+  --       topdelete = { text = '‾' },
+  --       changedelete = { text = '~' },
+  --     },
+  --   },
+  -- },
   -- Highlight todo, notes, etc in comments
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
   { -- Collection of various small independent plugins/modules

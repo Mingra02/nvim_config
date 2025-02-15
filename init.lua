@@ -183,6 +183,7 @@ require('lazy').setup({
   require 'kickstart.plugins.lsp',
   require 'kickstart.plugins.bufferline',
   require 'kickstart.plugins.repl',
+  require 'kickstart.plugins.leetcode',
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the

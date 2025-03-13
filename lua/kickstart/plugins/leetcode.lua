@@ -21,4 +21,6 @@ return {
       },
     },
   },
+  vim.keymap.set('n', '<leader>ll', '<cmd>Leet run<CR>'),
+  vim.keymap.set('n', '<leader>l<CR>', '<cmd>Leet submit<CR>'),
 }

@@ -38,4 +38,8 @@ return {
     end,
   },
   { 'nvim-treesitter/nvim-treesitter-refactor' },
+  { 'nvim-treesitter/nvim-treesitter-context', opts = {
+    enable = true,
+    multiwindow = true,
+  } },
 }

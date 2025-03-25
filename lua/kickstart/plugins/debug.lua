@@ -14,7 +14,7 @@ return {
     dependencies = {
       -- Creates a beautiful debugger UI
       'rcarriga/nvim-dap-ui',
-
+      'mfussenegger/nvim-dap-python',
       -- Required dependency for nvim-dap-ui
       'nvim-neotest/nvim-nio',
 
@@ -24,6 +24,7 @@ return {
 
       -- Add your own debuggers here
       'leoluz/nvim-dap-go',
+      'theHamsta/nvim-dap-virtual-text',
     },
     keys = {
       -- Basic debugging keymaps, feel free to change to your liking!
@@ -56,14 +57,14 @@ return {
         desc = 'Debug: Step Out',
       },
       {
-        '<leader>b',
+        '<leader>db',
         function()
           require('dap').toggle_breakpoint()
         end,
         desc = 'Debug: Toggle Breakpoint',
       },
       {
-        '<leader>B',
+        '<leader>dB',
         function()
           require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
         end,
@@ -81,6 +82,15 @@ return {
     config = function()
       local dap = require 'dap'
       local dapui = require 'dapui'
+      local dap_python = require 'dap-python'
+
+      local conda_prefix = os.getenv 'CONDA_PREFIX'
+      local python_path = conda_prefix and conda_prefix .. '/bin/python' or 'python3'
+
+      dap_python.setup(python_path)
+      require('nvim-dap-virtual-text').setup {
+        comment = true,
+      }
 
       require('mason-nvim-dap').setup {
         -- Makes a best effort to setup the various debuggers with
@@ -145,12 +155,6 @@ return {
           detached = vim.fn.has 'win32' == 0,
         },
       }
-    end,
-  },
-  {
-    'mfussenegger/nvim-dap-python',
-    config = function()
-      require('dap-python').setup '~/.virtualenvs/debugpy/bin/python'
     end,
   },
 }

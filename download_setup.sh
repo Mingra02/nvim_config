@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # This file will download all the applications needed for this dev setup.
 # You should first download WSL and powertoys in the windows shell.
 # Additionally, download windows terminal from the Microsoft Store or
@@ -10,14 +12,19 @@
 BASHRC="$HOME/.bashrc"
 CONFIG_DIR="$HOME/.config"
 NVIM_DIR="$CONFIG_DIR/nvim"
-NVM_DIR = "$HOME/.nvm"
+NVM_DIR="$HOME/.nvm"
 TMUX_PLUGIN_DIR="$HOME/.tmux/plugins/tpm"
 CONDA_PREFIX="$HOME/miniconda3"
 GO_VERSION="1.24.2"
-LAZYGIT_VERSION=$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/realeases/latest \
+LAZYGIT_VERSION=$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/releases/latest \
 	| grep -oP '"tag_name": *"v\K[^"]*')
 
-# 1. Update WSL
+# 1. Update WSL & Script Setup
+# Safety Flags
+set -euo pipefail
+IFS=$'\n\t'
+
+# Update WSL
 sudo apt update && sudo apt upgrade -y
 
 # Install dependencies
@@ -26,7 +33,7 @@ sudo apt install build-essential git curl wget unzip \
 
 # 2. Download repo
 mkdir -p "$NVIM_DIR"
-if [ ! -d "$NVIM_DIR/.git"]; then
+if [ ! -d "$NVIM_DIR/.git" ]; then
 	git clone https://github.com/mingra02/nvim_config "$NVIM_DIR"
 	(cd "$NVIM_DIR" && git switch master)
 fi
@@ -42,7 +49,7 @@ if [ ! -s "$NVM_DIR/nvm.sh" ]; then
 fi
 
 grep -qF 'nvm.sh' ~/.bashrc || \
-	printf '\nexport NVM_DIR="$HOME/.nvm.sh"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"\n' >> ~/.bashrc
+	printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"\n' >> ~/.bashrc
 
 # 4. Install Docker
 
@@ -51,13 +58,13 @@ for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
 done
 
 sudo install -m0755 -d /etc/apt/keyrings
-curl -fsSL https://downlaod.docker.com/linuxx/ubuntu/gpg | \
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | \
 	sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
 echo \
 	"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
 	https://download.docker.com/linux/ubuntu \
-	#(. /etc/os-release && echo $VERSION_CODENAME) stable" \
+	$(. /etc/os-release && echo $VERSION_CODENAME) stable" \
 	| sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 sudo apt update
@@ -76,7 +83,7 @@ sudo apt install tmux -y
 if [ ! -d "$TMUX_PLUGIN_DIR" ]; then
 	git clone https://github.com/tmux-plugins/tpm "$TMUX_PLUGIN_DIR"
 fi
-cp -n ~/.config/tmux/tmux.conf ~/.tmux.conf
+cp -n ~/.config/nvim/tmux.conf ~/.tmux.conf
 
 # IMPORTANT, to download and install plugins, run the following command
 # inside tmux:
@@ -92,9 +99,9 @@ if [ ! -d "$CONDA_PREFIX" ]; then
 fi
 
 # 7. Install GO
-if ! go version 2>/ dev/null; then
-	curl -fsSL https://dl.google.com/go/go{$GO_VERSION}.linux-amd64.tar.gz -o ~/go.tar.gz
-	tar rm -rf /usr/local/go
+if ! go version &>/dev/null; then
+	curl -fsSL https://dl.google.com/go/go${GO_VERSION}.linux-amd64.tar.gz -o ~/go.tar.gz
+	sudo rm -rf /usr/local/go
 	sudo tar -C /usr/local -xzf ~/go.tar.gz
 	rm go.tar.gz
 
@@ -106,7 +113,7 @@ fi
 curl -fsSL \
 	"https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz" \
 	-o ~/lazygit.tar.gz
-tar xzf lazygit.tar.gz lazygit && rm lazygit.tar.gz
+tar xzf ~/lazygit.tar.gz lazygit && rm ~/lazygit.tar.gz
 sudo install lazygit -D -t /usr/local/bin/
 rm  lazygit
 

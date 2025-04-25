@@ -29,7 +29,7 @@ sudo apt update && sudo apt upgrade -y
 
 # Install dependencies
 sudo apt install build-essential git curl wget unzip \
-	ca-certificates -y
+	ca-certificates ripgrep -y
 
 # 2. Download repo
 mkdir -p "$NVIM_DIR"
@@ -75,7 +75,7 @@ if ! getent group docker >/dev/null; then
 	sudo groupadd docker
 fi
 
-sudo usermod -aG docker $USER
+sudo usermod -aG docker "$USER"
 
 # 5. Install TMUX
 

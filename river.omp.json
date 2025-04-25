@@ -24,11 +24,12 @@
             "fetch_virtual_env": true
           },
           "template": " \ue235 {{ if matchP \"base\" .Venv }}{{ .Full }}{{ else }}{{ .Venv }}{{ end }}",
-          "foreground": "p:dark",
+          "foreground": "#2E3440",
           "powerline_symbol": "\ue0b0",
-          "background": "p:forest_green",
+          "background": "#B48EAD",
           "type": "python",
-          "style": "powerline"
+          "leading_diamond": "\ue0b6",
+          "style": "diamond"
         },
         {
           "properties": {
@@ -44,9 +45,9 @@
             "style": "agnoster_short"
           },
           "template": " {{ .Path }}",
-          "foreground": "p:dark",
+          "foreground": "#2E3440",
           "powerline_symbol": "\ue0b0",
-          "background": "p:blue_gray",
+          "background": "#81A1C1",
           "type": "path",
           "style": "powerline"
         },
@@ -65,9 +66,9 @@
             "tag_icon": "\uf412 "
           },
           "template": " {{ .HEAD }}{{if .BranchStatus }} {{ .BranchStatus }}{{ end }}{{ if .Working.Changed }} \uf044 {{ .Working.String }}{{ end }}{{ if and (.Staging.Changed) (.Working.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}",
-          "foreground": "p:dark",
+          "foreground": "#2E3440",
           "powerline_symbol": "\ue0b0",
-          "background": "p:light_blue",
+          "background": "#A3BE8C",
           "type": "git",
           "style": "powerline"
         }

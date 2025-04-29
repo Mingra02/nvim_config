@@ -121,7 +121,7 @@ return {
       vim.g.VimuxUseNearest = 0
       vim.g.VimuxHeight = 100
       vim.fn.VimuxOpenRunner()
-      vim.fn.VimuxRunCommand('python -m unittest discover -s tests -p test_*.py', 1)
+      vim.fn.VimuxRunCommand('python3 -m unittest discover -s tests -p test_*.py', 1)
       vim.fn.VimuxInspectRunner()
       vim.g.VimuxOrientation = 'v'
       vim.g.VimuxUseNearest = 1

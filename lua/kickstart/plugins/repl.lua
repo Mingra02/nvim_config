@@ -3,6 +3,14 @@ return {
   config = function()
     vim.cmd [[
       function! VimuxSlimePython()
+        if !exists('g:VimuxRunnerIndex')
+          call VimuxOpenRunner()
+          call VimuxRunCommand('python3 -i', 1)
+        elseif exists('*_VimuxHasRunner') && !_VimuxHasRunner(g:VimuxRunnerIndex)
+            call VimuxOpenRunner()
+            call VimuxRunCommand('python3 -i', 1)
+        endif
+
         " Split the text from register 'v' into lines.
         let lines = split(@v, "\n")
 
@@ -107,5 +115,17 @@ return {
 
     -- Whole buffer: Yank the entire buffer into register v and send it.
     vim.keymap.set('n', '<leader><S-CR>', ':%yank v<CR>:call VimuxSlimePython()<CR>', { noremap = true, silent = true, desc = 'Send whole buffer to tmux' })
+
+    vim.keymap.set('n', '<leader>tt', function()
+      vim.g.VimuxOrientation = 'h'
+      vim.g.VimuxUseNearest = 0
+      vim.g.VimuxHeight = 100
+      vim.fn.VimuxOpenRunner()
+      vim.fn.VimuxRunCommand('python -m unittest discover -s tests -p test_*.py', 1)
+      vim.fn.VimuxInspectRunner()
+      vim.g.VimuxOrientation = 'v'
+      vim.g.VimuxUseNearest = 1
+      vim.g.VimuxHeight = 20
+    end, { noremap = true, silent = true, desc = 'Run tests in tmux' })
   end,
 }

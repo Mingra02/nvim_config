@@ -51,6 +51,9 @@ fi
 grep -qF 'nvm.sh' ~/.bashrc || \
 	printf '\nexport NVM_DIR="$HOME/.nvm"\n[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"\n' >> ~/.bashrc
 
+# Install Node packages
+npm install -g markdownlint-cli
+
 # 4. Install Docker
 
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do
